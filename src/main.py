@@ -5,35 +5,40 @@ Created on Aug 17, 2013
 '''
 
 from weatherdata import WeatherData
-from ledmanager import LEDManager
-import utils
-import os
-import sys
+import utils, ledmanager
+import os, sys, time
 
 # running in development mode by default
-# (development mode bypasses calls to IO pin calls)
+# (development mode bypasses calls to the BBB's IO pins)
 developmentMode = True
 
 LOGTAG = os.path.basename(__file__)
 
 
 def main():
-    utils.log(LOGTAG, 'Starting main method..')
-    
     if not utils.hasInternet():
         utils.log(LOGTAG, 'No internet connection, aborting program.')
         sys.exit()
     
+    while True:
+        utils.log(LOGTAG, 'Refreshing forecast data..')
+        forecastInfo = fetchForecast()
+        forecastText = forecastInfo[0]
+        forecastPrecip = forecastInfo[1]
+        if not developmentMode:
+            textToLED(forecastText)
+        time.sleep(60)
+        
+def fetchForecast():
     forecast = WeatherData()
     fText = forecast.getForecastText()
     utils.log(LOGTAG, 'Retrieved forecast text: ' + fText)
-    
     fPrecip = forecast.getPrecipitation()
     utils.log(LOGTAG, 'Retrieved precipitation value: ' + fPrecip)
     
+    fInfo = [fText, fPrecip]
+    return fInfo
     
-    if not developmentMode:
-        textToLED(fText)
     
 def textToLED(text):
     if text == 'Partly Sunny':
@@ -60,4 +65,9 @@ def textToLED(text):
 if __name__ == '__main__':
     if utils.getSocketHostName() == 'beaglebone':
         developmentMode = False
+        utils.log(LOGTAG, 'Starting main method on Beaglebone Black')
+    else:
+        utils.log(LOGTAG, 'Starting main method in development mode')
+        
+        
     main()
