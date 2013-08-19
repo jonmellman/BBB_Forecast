@@ -4,8 +4,8 @@ Created on Aug 17, 2013
 @author: jonmellman
 '''
 
-from systemchecker import SystemChecker
-if SystemChecker.getSocketHostName() == 'beaglebone':
+import utils
+if utils.getSocketHostName() == 'beaglebone':
     import Adafruit_BBIO.PWM as PWM  # @UnresolvedImport
 import time
 
