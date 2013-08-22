@@ -24,11 +24,11 @@ GREENMAX = 50
 BLUEMAX = 60
 
 def shineRGB(red, green, blue, blinkFrequency=0):
-    PWM.start(PIN_RED, 100)
-    PWM.start(PIN_GREEN, 100)
-    PWM.start(PIN_BLUE, 100)
+#     PWM.start(PIN_RED, 100)
+#     PWM.start(PIN_GREEN, 100)
+#     PWM.start(PIN_BLUE, 100)
     
-    rawValues = [int(red), int(green), int(blue)]
+    rawValues = [float(red), float(green), float(blue)]
     convertedValues = _convertValues(rawValues)
     
     PWM.set_duty_cycle(PIN_RED, convertedValues[0])
@@ -58,13 +58,13 @@ def _convertValues(rawVals):
     
     # first, scale the values so they're in the range (0, 255)
     for color in rawVals:
-        results.append((100/255) * color)
+        results.append((100.0/255.0) * color)
     
     # next, we invert (higher duty cycle = less power) and
     # scale again so its within the range (MAXIMUM, 100)
     # (duty cycle of 100 is totally off)
     for i in range(0, 3):
-        results[i] = ((MAXIMUMS[i] - 100) / 100) * results[i] + 100
+        results[i] = ((MAXIMUMS[i] - 100) / 100.0) * results[i] + 100
     
     return results  
 
