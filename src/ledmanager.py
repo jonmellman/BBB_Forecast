@@ -8,6 +8,7 @@ import utils
 if utils.getSocketHostName() == 'beaglebone':
     import Adafruit_BBIO.PWM as PWM  # @UnresolvedImport
 import time
+import sys
     
 PIN_RED = "P8_13"
 PIN_GREEN = "P8_19"
@@ -66,3 +67,7 @@ def _convertValues(rawVals):
         results[i] = ((MAXIMUMS[i] - 100) / 100) * results[i] + 100
     
     return results  
+
+if __name__ == '__main__':
+    shineRGB(sys.argv[1], sys.argv[2], sys.argv[3])
+    
