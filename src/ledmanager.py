@@ -28,7 +28,7 @@ def shineRGB(red, green, blue, blinkFrequency=0):
     PWM.start(PIN_GREEN, 100)
     PWM.start(PIN_BLUE, 100)
     
-    rawValues = [red, green, blue]
+    rawValues = [int(red), int(green), int(blue)]
     convertedValues = _convertValues(rawValues)
     
     PWM.set_duty_cycle(PIN_RED, convertedValues[0])
