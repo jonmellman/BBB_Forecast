@@ -24,9 +24,9 @@ GREENMAX = 50
 BLUEMAX = 60
 
 def shineRGB(red, green, blue, blinkFrequency=0):
-#     PWM.start(PIN_RED, 100)
-#     PWM.start(PIN_GREEN, 100)
-#     PWM.start(PIN_BLUE, 100)
+    PWM.start(PIN_RED, 100)
+    PWM.start(PIN_GREEN, 100)
+    PWM.start(PIN_BLUE, 100)
     
     rawValues = [float(red), float(green), float(blue)]
     convertedValues = _convertValues(rawValues)
