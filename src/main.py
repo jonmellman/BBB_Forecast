@@ -31,7 +31,7 @@ def main():
             time.sleep(60)
         except KeyboardInterrupt:
             ledmanager.cleanUp()
-            
+            sys.exit()
         
 def fetchForecast():
     forecast = WeatherData()
