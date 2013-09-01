@@ -21,13 +21,17 @@ def main():
         sys.exit()
     
     while True:
-        utils.log(LOGTAG, 'Refreshing forecast data..')
-        forecastInfo = fetchForecast()
-        forecastText = forecastInfo[0]
-        forecastPrecip = forecastInfo[1]
-        if not developmentMode:
-            textToLED(forecastText)
-        time.sleep(60)
+        try:
+            utils.log(LOGTAG, 'Refreshing forecast data..')
+            forecastInfo = fetchForecast()
+            forecastText = forecastInfo[0]
+            forecastPrecip = forecastInfo[1]
+            if not developmentMode:
+                textToLED(forecastText)
+            time.sleep(60)
+        except KeyboardInterrupt:
+            ledmanager.cleanUp()
+            
         
 def fetchForecast():
     forecast = WeatherData()
