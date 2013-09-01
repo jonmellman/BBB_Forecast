@@ -42,22 +42,40 @@ def fetchForecast():
     
 def textToLED(text):
     if text == 'Partly Sunny':
+        #light yellow
+        ledmanager.shineRGB(255, 255, 64)
         pass
     elif text == 'Mostly Sunny':
+        #yellow
+        ledmanager.shineRGB(255, 255, 0)
         pass
     elif text == 'Sunny':
+        #orange
+        ledmanager.shineRGB(255, 127, 0)
         pass
     elif text == 'Partly Cloudy':
+        #partly cloudy = mostly sunny?
+        ledmanager.shineRGB(255, 255, 0)
         pass
     elif text == 'Mostly Cloudy':
+        #mostly cloudy = partly sunny?
+        ledmanager.shineRGB(255, 255, 64)
         pass
     elif text == 'Cloudy':
+        #white
+        ledmanager.shineRGB(255, 255, 255)
         pass
     elif text == 'Showers':
+        #light blue
+        ledmanager.shineRGB(32, 32, 255)
         pass
     elif text == 'Rain / Thunder':
+        #blue
+        ledmanager.shineRGB(0, 0, 255)
         pass
     elif text == 'N/A':
+        #red
+        ledmanager.shineRGB(255, 0, 0)
         pass
     else:
         utils.log(LOGTAG, 'Not sure what to do with text: ' + text)

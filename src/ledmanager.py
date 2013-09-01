@@ -18,12 +18,13 @@ PIN_BLUE = "P9_14"
 # overpower red - compensate by restricting
 # green and blue's maximum duty cycle
 
-MAXIMUMS = [0, 50, 60]
-REDMAX = 0
-GREENMAX = 50
-BLUEMAX = 60
+# The RGB_CALIBRATION_FACTORS list contains the
+# values that we restrict the red, green, and blue
+# LEDs by, respectively
+RGB_CALIBRATION_FACTORS = [0, 50, 60]
 
 def shineRGB(red, green, blue, blinkFrequency=0):
+    # blinkFrequency currently unimplemented (threading is necessary?)
     PWM.start(PIN_RED, 100)
     PWM.start(PIN_GREEN, 100)
     PWM.start(PIN_BLUE, 100)
@@ -64,7 +65,7 @@ def _convertValues(rawVals):
     # scale again so its within the range (MAXIMUM, 100)
     # (duty cycle of 100 is totally off)
     for i in range(0, 3):
-        results[i] = ((MAXIMUMS[i] - 100) / 100.0) * results[i] + 100
+        results[i] = ((RGB_CALIBRATION_FACTORS[i] - 100) / 100.0) * results[i] + 100
     
     return results  
 
