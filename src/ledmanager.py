@@ -21,7 +21,7 @@ PIN_BLUE = "P9_14"
 # The RGB_CALIBRATION_FACTORS list contains the
 # values that we restrict the red, green, and blue
 # LEDs by, respectively
-RGB_CALIBRATION_FACTORS = [0, 50, 60]
+RGB_CALIBRATION_FACTORS = [0, 0, 0]
 
 def shineRGB(red, green, blue, blinkFrequency=0):
     # blinkFrequency currently unimplemented (threading is necessary?)
