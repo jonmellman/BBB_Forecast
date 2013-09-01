@@ -73,6 +73,10 @@ def textToLED(text):
         #blue
         ledmanager.shineRGB(0, 0, 255)
         pass
+    elif text == 'Isolated T-Storms':
+        #magenta? why not.
+        ledmanager.shineRGB(255, 0, 255)
+        pass
     elif text == 'N/A':
         #red
         ledmanager.shineRGB(255, 0, 0)
