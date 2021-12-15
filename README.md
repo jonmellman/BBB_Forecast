@@ -5,7 +5,7 @@ BBB_Forecast
 
 Using the [BeagleBone Black microcomputer](http://beagleboard.org/Products/BeagleBone%20Black), shine different colored LEDs depending on the weather forecast.
 
-# Depencencies
+# Dependencies
 
 The [pywapi](https://code.google.com/p/python-weather-api/) library is used to fetch the weather data and the [Adafruit_BBIO.PWM](https://github.com/adafruit/adafruit-beaglebone-io-python) library  is used to control the LEDs.
 
